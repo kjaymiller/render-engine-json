@@ -14,7 +14,7 @@ The `render-engine-json` extends render-engine to allow you to build pages and c
 
 The `JSONPageParser` class can be used to parse a single JSON page and the `JSONCollection` class can be used to parse a single collection of JSON pages.
 
-> ***NOTE***
+> **NOTE**
 > The `JSONCollection` class is designed to work with a single JSON file that contains an array of JSON Objects or a JSON Hash where the keys are the slugs. If you want to work with multiple JSON files you can use a regular `Collection` and the `JSONPageParser` as the parser.
 
 ### Single JSON Page Entry
