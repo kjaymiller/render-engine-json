@@ -53,7 +53,7 @@ class JSONStringPage(Page):
 @site.page
 class JSONFilePage(Page):
     parser = JSONPageParser
-    content = "path/to/json/file.json"
+    content_path = "path/to/json/file.json"
 
 ```
 
