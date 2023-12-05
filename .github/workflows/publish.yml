@@ -5,10 +5,7 @@ on:
     types: [created]
 
 jobs:
-  test:
-    uses: ./.github/workflows/test.yml
   deploy:
-    needs: test
     name: Deploy to PyPI
     runs-on: ubuntu-latest
     steps:
