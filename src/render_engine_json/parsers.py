@@ -33,7 +33,7 @@ class JSONPageParser(BasePageParser):
     """Parser for JSON content."""
 
     @staticmethod
-    def parse_content_path(content_path: str) -> dict[str, Any]:
+    def parse_content_path(content_path: str) -> dict[str, any]:
         """
         Fetches content from a content_path and set attributes.
         """
@@ -41,7 +41,7 @@ class JSONPageParser(BasePageParser):
             return json.load(json_file)
 
     @staticmethod
-    def parse_content(content: str) -> tuple[dict[str, Any], str]:
+    def parse_content(content: str) -> tuple[dict[str, any], str]:
         """
         Fetching content and atttributes from content.
 
