@@ -41,4 +41,3 @@ target-version = "py311"
 line-length = 120
 src = ["src"]
 ignore-init-module-imports = true
-

@@ -39,7 +39,7 @@ class JSONPageParser(BasePageParser):
         Fetches content from a content_path and set attributes.
         """
         with open(content_path, "rb") as json_file:
-            return json.load(json_file)
+            return JSONPageParser.parse_content(json_file.read())
 
     @staticmethod
     def parse_content(content: str) -> tuple[dict[str, any], str]:
@@ -54,11 +54,11 @@ class JSONPageParser(BasePageParser):
         body = json.loads(content)
 
         if isinstance(body, dict):
-            logging.warning("JSON Content Identified as a dictionary.")
+            logging.debug("JSON Content Identified as a dictionary.")
             return parse_from_slug_entry(body)
 
         if isinstance(body, list):
-            logging.warning("JSON Content Identified as a list.")
+            logging.debug("JSON Content Identified as a list.")
             return {"data": body}, ""
 
         raise TypeError(
