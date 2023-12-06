@@ -57,38 +57,6 @@ class JSONFilePage(Page):
 
 ```
 
-### JSON Collection
-
-To create a JSON collection you will need the `JSONCollection` Object.
-
-You can pass the collection a json string or a json file path.
-
-#### As a string
-
-```python
-from render_engine import Site, Collection
-from render_engine_json import JSONCollection, JSONPageParser
-
-site = Site()
-
-json_collection = """
-[
-    {
-        "title": "My JSON Page",
-        "content": "This is my json page"
-    },
-    {
-        "title": "My JSON Page 2",
-        "content": "This is my json page 2"
-    }
-]
-"""
-
-@site.collection
-class JSONStringCollection(Collection):
-    parser = JSONPageParser
-    content = json_collection
-
 ```
 
 
