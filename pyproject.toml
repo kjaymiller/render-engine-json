@@ -13,11 +13,13 @@ dependencies = [
     "python-slugify"
 ]
 
-
 [project.optional-dependencies]
 dev=[
     "pytest"
 ]
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

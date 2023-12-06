@@ -1,4 +1,5 @@
 import json
+import logging
 
 from render_engine.parsers.base_parsers import BasePageParser
 
@@ -53,9 +54,11 @@ class JSONPageParser(BasePageParser):
         body = json.loads(content)
 
         if isinstance(body, dict):
+            logging.warning("JSON Content Identified as a dictionary.")
             return parse_from_slug_entry(body)
 
         if isinstance(body, list):
+            logging.warning("JSON Content Identified as a list.")
             return {"data": body}, ""
 
         raise TypeError(
