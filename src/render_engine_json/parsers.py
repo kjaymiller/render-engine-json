@@ -1,17 +1,16 @@
 import json
 import logging
 
-from render_engine.parsers.base_parsers import BasePageParser
+from render_engine_parser import BasePageParser
 
 
-def base_parse(body: dict[str, any]) -> tuple[dict[str, any], str]:
+def base_parse(body: dict[str, any]) -> tuple[dict[str, any], any]:
     """
     parse content and attributes from content
     >>> base_parse({"title": "Hello", "content": "Hello World"})
     >>> ({'title': 'Hello'}, 'Hello World')
     """
-    content = body.pop("content", None)
-    return body, content
+    return body, body
 
 
 class JSONPageParser(BasePageParser):
@@ -51,9 +50,5 @@ class JSONPageParser(BasePageParser):
         )
 
     @staticmethod
-    def parse(content, page) -> str:
-        if data := getattr(page, "data", None):
-            if "modify" in page.parser_extras:
-                page.data = page.parser_extras["modify"](data)
-
-            return content
+    def parse(content, extras) -> str:
+        return content
