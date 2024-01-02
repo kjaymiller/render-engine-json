@@ -50,5 +50,7 @@ class JSONPageParser(BasePageParser):
         )
 
     @staticmethod
-    def parse(content, extras) -> str:
+    def parse(content: dict | list, extras: dict) -> str:
+        if (modify:=extras.get("modify")):
+            return modify(content)
         return content
