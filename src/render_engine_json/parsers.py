@@ -1,33 +1,16 @@
 import json
 import logging
 
-from render_engine.parsers.base_parsers import BasePageParser
+from render_engine_parser import BasePageParser
 
 
-def base_parse(body: dict[str, any]) -> tuple[dict[str, any], str]:
+def base_parse(body: dict[str, any]) -> tuple[dict[str, any], any]:
     """
     parse content and attributes from content
     >>> base_parse({"title": "Hello", "content": "Hello World"})
     >>> ({'title': 'Hello'}, 'Hello World')
     """
-    content = body.pop("content", None)
-    return body, content
-
-
-def parse_from_slug_entry(
-    slug_entry: dict[str, dict[str, any]]
-) -> tuple[dict[str, any], str]:
-    """
-    Fething content and attributes from a slug entry.
-    >>> parse_from_slug_entry({"slug": {"content": "Hello World"}})
-    >>> ({'slug': 'slug'}, 'Hello World')
-
-    This function expects input to be a dictionary with a single key whose value is a dict.
-    """
-
-    attrs, content = base_parse(list(slug_entry.values())[0])
-    attrs["slug"] = list(slug_entry.keys())[0]
-    return attrs, content
+    return body, body
 
 
 class JSONPageParser(BasePageParser):
@@ -55,7 +38,7 @@ class JSONPageParser(BasePageParser):
 
         if isinstance(body, dict):
             logging.debug("JSON Content Identified as a dictionary.")
-            return parse_from_slug_entry(body)
+            return base_parse(body)
 
         if isinstance(body, list):
             logging.debug("JSON Content Identified as a list.")
@@ -65,3 +48,9 @@ class JSONPageParser(BasePageParser):
             "The content should be a stringified dictionary or list.\n \
             Perhaps you meant to stringify the content?"
         )
+
+    @staticmethod
+    def parse(content: dict | list, extras: dict) -> str:
+        if (modify:=extras.get("modify")):
+            return modify(content)
+        return content
