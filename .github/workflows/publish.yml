@@ -7,6 +7,8 @@ on:
 jobs:
   deploy:
     name: Deploy to PyPI
+    permisisons:
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
