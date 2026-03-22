@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     name: Deploy to PyPI
-    permisisons:
+    permissions:
       id-token: write
     runs-on: ubuntu-latest
     steps:
