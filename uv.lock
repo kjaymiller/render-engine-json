@@ -2,9 +2,6 @@ version = 1
 revision = 3
 requires-python = ">=3.10"
 
-[options]
-prerelease-mode = "allow"
-
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -343,18 +340,19 @@ dependencies = [
     { name = "render-engine" },
 ]
 
-[package.optional-dependencies]
+[package.dev-dependencies]
 dev = [
     { name = "pytest" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "pytest", marker = "extra == 'dev'" },
     { name = "python-slugify" },
     { name = "render-engine", specifier = ">=2023.12.1b3" },
 ]
-provides-extras = ["dev"]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest" }]
 
 [[package]]
 name = "render-engine-markdown"

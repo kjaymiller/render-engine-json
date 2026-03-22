@@ -13,8 +13,8 @@ dependencies = [
     "python-slugify"
 ]
 
-[project.optional-dependencies]
-dev=[
+[dependency-groups]
+dev = [
     "pytest"
 ]
 
